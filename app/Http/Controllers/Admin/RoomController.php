@@ -23,16 +23,18 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'room_number'  => 'required|unique:rooms|max:50',
             'floor'        => 'required|integer|min:1',
             'room_type_id' => 'required|exists:room_types,id',
             'monthly_rate' => 'required|numeric|min:0',
             'max_occupants'=> 'required|integer|min:1',
             'status'       => 'required|in:vacant,occupied,under_maintenance,reserved',
-            'amenities'    => 'nullable|string',
+            'amenities'    => 'nullable|array',
             'notes'        => 'nullable|string',
         ]);
+
+        $data['amenities'] = json_encode($request->input('amenities', []));
 
         Room::create($request->all());
         return redirect()->route('admin.rooms.index')
@@ -52,16 +54,18 @@ class RoomController extends Controller
 
     public function update(Request $request, Room $room)
     {
-        $request->validate([
+        $data = $request->validate([
             'room_number'  => 'required|max:50|unique:rooms,room_number,' . $room->id,
             'floor'        => 'required|integer|min:1',
             'room_type_id' => 'required|exists:room_types,id',
             'monthly_rate' => 'required|numeric|min:0',
             'max_occupants'=> 'required|integer|min:1',
             'status'       => 'required|in:vacant,occupied,under_maintenance,reserved',
-            'amenities'    => 'nullable|string',
+            'amenities'    => 'nullable|array',
             'notes'        => 'nullable|string',
         ]);
+
+        $data['amenities'] = json_encode($request->input('amenities', []));
 
         $room->update($request->all());
         return redirect()->route('admin.rooms.index')
