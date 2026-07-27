@@ -17,7 +17,7 @@
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-lg font-medium">All Rooms</h3>
             <a href="{{ route('admin.rooms.create') }}"
-               class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 + Add Room
             </a>
         </div>
@@ -51,10 +51,10 @@
                     </td>
                     <td class="px-4 py-3 space-x-2">
                         <a href="{{ route('admin.rooms.edit', $room) }}"
-                           class="text-blue-600 hover:underline">Edit</a>
+                        class="text-blue-600 hover:underline">Edit</a>
                         <form action="{{ route('admin.rooms.destroy', $room) }}"
-                              method="POST" class="inline"
-                              onsubmit="return confirm('Delete this room?')">
+                            method="POST" class="inline"
+                            onsubmit="return confirm('Delete this room?')">
                             @csrf @method('DELETE')
                             <button class="text-red-600 hover:underline">Delete</button>
                         </form>
