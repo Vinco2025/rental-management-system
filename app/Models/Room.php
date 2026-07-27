@@ -17,6 +17,11 @@ class Room extends Model
         'notes',
     ];
 
+    protected $casts = [
+        'amenities' => 'array',
+        'monthly_rate' => 'decimal:2',
+    ];
+
     public function roomType()
     {
         return $this->belongsTo(RoomType::class);
