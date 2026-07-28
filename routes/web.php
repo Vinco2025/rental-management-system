@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\RoomTypeController;
+use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/', fn() => redirect()->route('admin.rooms.index'));
     Route::resource('room-types', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
+    Route::resource('tenants', TenantController::class);
 });
 
 require __DIR__.'/auth.php';
