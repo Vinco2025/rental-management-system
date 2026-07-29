@@ -26,4 +26,14 @@ class Room extends Model
     {
         return $this->belongsTo(RoomType::class);
     }
+
+    public function leaseContracts()
+    {
+        return $this->hasMany(LeaseContract::class);
+    }
+
+    public function activeLease()
+    {
+        return $this->hasOne(LeaseContract::class)->where('status', 'active');
+    } 
 }
