@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Admin\LeaseContractController;
+use App\Models\LeaseContract;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +29,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('room-types', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('tenants', TenantController::class);
+    Route::resource('lease-contracts', LeaseContractController::class);
 });
 
 require __DIR__.'/auth.php';
