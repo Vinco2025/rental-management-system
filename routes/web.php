@@ -27,9 +27,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', fn() => redirect()->route('admin.rooms.index'));
     Route::resource('room-types', RoomTypeController::class);
+    Route::patch('room-status/{room}', [RoomController::class, 'updateStatus'])->name('rooms.updateStatus');
     Route::resource('rooms', RoomController::class);
     Route::resource('tenants', TenantController::class);
     Route::resource('lease-contracts', LeaseContractController::class);
-});
+}); 
 
 require __DIR__.'/auth.php';
