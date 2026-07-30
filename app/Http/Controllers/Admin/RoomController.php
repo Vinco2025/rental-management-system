@@ -29,14 +29,14 @@ class RoomController extends Controller
             'room_type_id' => 'required|exists:room_types,id',
             'monthly_rate' => 'required|numeric|min:0',
             'max_occupants'=> 'required|integer|min:1',
-            'status'       => 'required|in:vacant,occupied,under_maintenance,reserved',
+            'status'       => 'required|in:available,occupied,under_maintenance,reserved',
             'amenities'    => 'nullable|array',
             'notes'        => 'nullable|string',
         ]);
 
         $data['amenities'] = json_encode($request->input('amenities', []));
 
-        Room::create($request->all());
+        Room::create($data);
         return redirect()->route('admin.rooms.index')
                         ->with('success', 'Room created successfully.');
     }
@@ -60,14 +60,14 @@ class RoomController extends Controller
             'room_type_id' => 'required|exists:room_types,id',
             'monthly_rate' => 'required|numeric|min:0',
             'max_occupants'=> 'required|integer|min:1',
-            'status'       => 'required|in:vacant,occupied,under_maintenance,reserved',
+            'status'       => 'required|in:available,occupied,under_maintenance,reserved',
             'amenities'    => 'nullable|array',
             'notes'        => 'nullable|string',
         ]);
 
         $data['amenities'] = json_encode($request->input('amenities', []));
 
-        $room->update($request->all());
+        $room->update($data);
         return redirect()->route('admin.rooms.index')
                         ->with('success', 'Room updated successfully.');
     }
@@ -78,4 +78,16 @@ class RoomController extends Controller
         return redirect()->route('admin.rooms.index')
                         ->with('success', 'Room deleted.');
     }
+
+    public function updateStatus(Request $request, Room $room)
+{
+    $request->validate([
+        'status' => 'required|in:available,occupied,under_maintenance,reserved',
+    ]);
+
+    $room->update(['status' => $request->status]);
+
+    return redirect()->route('admin.rooms.show', $room)
+                    ->with('success', 'Status updated.');
+}
 }
