@@ -1,68 +1,69 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Rooms
-        </h2>
-    </x-slot>
+@extends('layouts.admin')
 
-    <div class="py-8 max-w-7xl mx-auto px-4">
+@section('content')
+<div class="p-8">
 
-        {{-- Success message --}}
-        @if(session('success'))
-            <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-medium">All Rooms</h3>
-            <a href="{{ route('admin.rooms.create') }}"
-            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                + Add Room
-            </a>
+    @if(session('success'))
+        <div style="background: #EAF3DE; color: #3B6D11; border-radius: 8px; padding: 12px 16px; font-size: 13px; margin-bottom: 20px;">
+            {{ session('success') }}
         </div>
+    @endif
 
-        <table class="w-full bg-white shadow rounded">
-            <thead class="bg-gray-100 text-left text-sm text-gray-600">
-                <tr>
-                    <th class="px-4 py-3">Room No.</th>
-                    <th class="px-4 py-3">Floor</th>
-                    <th class="px-4 py-3">Type</th>
-                    <th class="px-4 py-3">Rate</th>
-                    <th class="px-4 py-3">Status</th>
-                    <th class="px-4 py-3">Actions</th>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+        <h1 style="font-size: 20px; font-weight: 500; color: #3D2314;">Rooms</h1>
+        <a href="{{ route('admin.rooms.create') }}"
+        style="background: #C2622A; color: #fff; font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; text-decoration: none;">
+            + Add room
+        </a>
+    </div>
+
+    <div style="background: #fff; border-radius: 12px; border: 0.5px solid #E8DDD4; overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <thead>
+                <tr style="background: #FDF8F4; border-bottom: 0.5px solid #E8DDD4;">
+                    <th style="padding: 10px 16px; text-align: left; font-size: 11px; color: #7A5542; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Room</th>
+                    <th style="padding: 10px 16px; text-align: left; font-size: 11px; color: #7A5542; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Floor</th>
+                    <th style="padding: 10px 16px; text-align: left; font-size: 11px; color: #7A5542; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Type</th>
+                    <th style="padding: 10px 16px; text-align: left; font-size: 11px; color: #7A5542; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Rate</th>
+                    <th style="padding: 10px 16px; text-align: left; font-size: 11px; color: #7A5542; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Status</th>
+                    <th style="padding: 10px 16px; text-align: left; font-size: 11px; color: #7A5542; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Actions</th>
                 </tr>
             </thead>
-            <tbody class="text-sm divide-y divide-gray-200">
+            <tbody>
                 @forelse($rooms as $room)
-                <tr>
-                    <td class="px-4 py-3">{{ $room->room_number }}</td>
-                    <td class="px-4 py-3">Floor {{ $room->floor }}</td>
-                    <td class="px-4 py-3">{{ $room->roomType->name }}</td>
-                    <td class="px-4 py-3">₱{{ number_format($room->monthly_rate, 2) }}</td>
-                    <td class="px-4 py-3">
-                        <span class="px-2 py-1 rounded text-xs font-semibold
-                            @if($room->status === 'vacant') bg-green-100 text-green-700
-                            @elseif($room->status === 'occupied') bg-blue-100 text-blue-700
-                            @elseif($room->status === 'under_maintenance') bg-red-100 text-red-700
-                            @else bg-yellow-100 text-yellow-700 @endif">
+                <tr style="border-bottom: 0.5px solid #F5EDE6;">
+                    <td style="padding: 12px 16px; font-weight: 500; color: #3D2314;">{{ $room->room_number }}</td>
+                    <td style="padding: 12px 16px; color: #7A5542;">Floor {{ $room->floor }}</td>
+                    <td style="padding: 12px 16px; color: #7A5542;">{{ $room->roomType->name }}</td>
+                    <td style="padding: 12px 16px; color: #7A5542;">₱{{ number_format($room->monthly_rate, 2) }}</td>
+                    <td style="padding: 12px 16px;">
+                        @php
+                            $badge = match($room->status) {
+                                'available'         => ['bg: #EAF3DE', 'color: #3B6D11'],
+                                'occupied'          => ['bg: #FAECE7', 'color: #993C1D'],
+                                'under_maintenance' => ['bg: #FAEEDA', 'color: #854F0B'],
+                                default             => ['bg: #F1EFE8', 'color: #5F5E5A'],
+                            };
+                        @endphp
+                        <span style="font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; background: {{ str_replace('bg: ', '', $badge[0]) }}; color: {{ str_replace('color: ', '', $badge[1]) }};">
                             {{ ucfirst(str_replace('_', ' ', $room->status)) }}
                         </span>
                     </td>
-                    <td class="px-4 py-3 space-x-2">
+                    <td style="padding: 12px 16px;">
+                        <a href="{{ route('admin.rooms.show', $room) }}"
+                        style="color: #C2622A; font-size: 13px; text-decoration: none; margin-right: 12px;">View</a>
                         <a href="{{ route('admin.rooms.edit', $room) }}"
-                        class="text-blue-600 hover:underline">Edit</a>
-                        <form action="{{ route('admin.rooms.destroy', $room) }}"
-                            method="POST" class="inline"
+                        style="color: #7A5542; font-size: 13px; text-decoration: none; margin-right: 12px;">Edit</a>
+                        <form action="{{ route('admin.rooms.destroy', $room) }}" method="POST" style="display: inline;"
                             onsubmit="return confirm('Delete this room?')">
                             @csrf @method('DELETE')
-                            <button class="text-red-600 hover:underline">Delete</button>
+                            <button type="submit" style="color: #993C1D; font-size: 13px; background: none; border: none; cursor: pointer; padding: 0;">Delete</button>
                         </form>
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="px-4 py-6 text-center text-gray-400">
+                    <td colspan="6" style="padding: 40px; text-align: center; color: #C4A08A; font-size: 13px;">
                         No rooms added yet.
                     </td>
                 </tr>
@@ -70,4 +71,6 @@
             </tbody>
         </table>
     </div>
-</x-app-layout>
+
+</div>
+@endsection
