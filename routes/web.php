@@ -31,6 +31,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('rooms', RoomController::class);
     Route::resource('tenants', TenantController::class);
     Route::resource('lease-contracts', LeaseContractController::class);
+    Route::get('bills', [App\Http\Controllers\Admin\BillController::class, 'index'])->name('bills.index');
+    Route::get('bills/generate', [App\Http\Controllers\Admin\BillController::class, 'create'])->name('bills.create');
+    Route::post('bills/generate', [App\Http\Controllers\Admin\BillController::class, 'generate'])->name('bills.generate');
+    Route::get('bills/{bill}', [App\Http\Controllers\Admin\BillController::class, 'show'])->name('bills.show');
+    Route::get('bills/{bill}/edit', [App\Http\Controllers\Admin\BillController::class, 'edit'])->name('bills.edit');
+    Route::put('bills/{bill}', [App\Http\Controllers\Admin\BillController::class, 'update'])->name('bills.update');
+    Route::delete('bills/{bill}', [App\Http\Controllers\Admin\BillController::class, 'destroy'])->name('bills.destroy');
+    Route::get('bills/{bill}/payments/create', [App\Http\Controllers\Admin\PaymentController::class, 'create'])->name('payments.create');
+    Route::post('bills/{bill}/payments', [App\Http\Controllers\Admin\PaymentController::class, 'store'])->name('payments.store');
+    Route::delete('bills/{bill}/payments/{payment}', [App\Http\Controllers\Admin\PaymentController::class, 'destroy'])->name('payments.destroy');
 }); 
 
 require __DIR__.'/auth.php';
