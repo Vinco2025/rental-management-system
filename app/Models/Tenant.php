@@ -48,4 +48,9 @@ class Tenant extends Model
     {
         return $this->hasOne(LeaseContract::class)->where('status', 'active');
     } 
+
+    public function maintenanceRequests()
+    {
+        return $this->hasMany(MaintenanceRequest::class);
+    }
 }
