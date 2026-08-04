@@ -49,6 +49,11 @@
                         {{ request()->routeIs('admin.bills.*') || request()->routeIs('admin.payments.*') ? 'background: #C2622A; color: #fff;' : 'color: #C4A08A;' }}">
                 <i class="ti ti-file-invoice" style="font-size: 16px;"></i> Billing
             </a>
+            <a href="{{ route('admin.maintenance.index') }}"
+                style="border-radius:7px;padding:8px 10px;font-size:13px;display:flex;align-items:center;gap:9px;
+                        {{ request()->routeIs('admin.maintenance*') ? 'background: #C2622A; color: #fff;' : 'color: #C4A08A;' }}">
+                <i class="ti ti-tool" style="font-size:16px;"></i> Maintenance
+            </a>
         </nav>
 
         {{-- User + sign out --}}
