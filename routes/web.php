@@ -41,6 +41,20 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('bills/{bill}/payments/create', [App\Http\Controllers\Admin\PaymentController::class, 'create'])->name('payments.create');
     Route::post('bills/{bill}/payments', [App\Http\Controllers\Admin\PaymentController::class, 'store'])->name('payments.store');
     Route::delete('bills/{bill}/payments/{payment}', [App\Http\Controllers\Admin\PaymentController::class, 'destroy'])->name('payments.destroy');
+    Route::get('maintenance', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'index'])->name('maintenance.index');
+    Route::get('maintenance/create', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'create'])->name('maintenance.create');
+    Route::post('maintenance', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'store'])->name('maintenance.store');
+    Route::get('maintenance/{maintenance}', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'show'])->name('maintenance.show');
+    Route::get('maintenance/{maintenance}/edit', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'edit'])->name('maintenance.edit');
+    Route::put('maintenance/{maintenance}', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'update'])->name('maintenance.update');
+    Route::delete('maintenance/{maintenance}', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'destroy'])->name('maintenance.destroy');
+});
+
+Route::prefix('tenant')->name('tenant.')->middleware(['auth'])->group(function () {
+    Route::get('maintenance', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'index'])->name('maintenance.index');
+    Route::get('maintenance/create', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'create'])->name('maintenance.create');
+    Route::post('maintenance', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'store'])->name('maintenance.store');
+    Route::get('maintenance/{maintenance}', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'show'])->name('maintenance.show');
 }); 
 
 require __DIR__.'/auth.php';
