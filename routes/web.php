@@ -14,10 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -48,6 +44,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('maintenance/{maintenance}/edit', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'edit'])->name('maintenance.edit');
     Route::put('maintenance/{maintenance}', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'update'])->name('maintenance.update');
     Route::delete('maintenance/{maintenance}', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'destroy'])->name('maintenance.destroy');
+    Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/reports', [App\Http\Controllers\Admin\ReportController::class, 'index'])->name('admin.reports.index');
+    Route::get('/admin/reports/export', [App\Http\Controllers\Admin\ReportController::class, 'export'])->name('admin.reports.export');
 });
 
 Route::prefix('tenant')->name('tenant.')->middleware(['auth'])->group(function () {
