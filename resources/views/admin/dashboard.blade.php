@@ -125,7 +125,7 @@
     <div style="background: #fff; border: 1px solid #E8DDD4; border-radius: 10px; padding: 20px;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
             <h2 style="font-size: 15px; font-weight: 700; color: #3D2314; margin: 0;">Recent Leases</h2>
-            <a href="{{ route('admin.lease_contracts.index') }}" style="font-size: 12px; color: #C2622A; text-decoration: none;">View all</a>
+            <a href="{{ route('admin.lease-contracts.index') }}" style="font-size: 12px; color: #C2622A; text-decoration: none;">View all</a>
         </div>
         @forelse($recentLeases as $lease)
         <div style="padding: 10px 0; border-bottom: 1px solid #E8DDD4;">
@@ -174,7 +174,7 @@
     <div style="background: #fff; border: 1px solid #E8DDD4; border-radius: 10px; padding: 20px;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
             <h2 style="font-size: 15px; font-weight: 700; color: #3D2314; margin: 0;">Recent Maintenance</h2>
-            <a href="{{ route('admin.maintenance_requests.index') }}" style="font-size: 12px; color: #C2622A; text-decoration: none;">View all</a>
+            <a href="{{ route('admin.maintenance.index') }}" style="font-size: 12px; color: #C2622A; text-decoration: none;">View all</a>
         </div>
         @forelse($recentMaintenance as $request)
         <div style="padding: 10px 0; border-bottom: 1px solid #E8DDD4;">
