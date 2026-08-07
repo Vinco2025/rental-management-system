@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        return redirect()->route('tenant.maintenance_requests.index');
+        return redirect()->route('tenant.maintenance.index');
     }
 
     /**
