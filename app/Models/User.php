@@ -14,6 +14,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_verified_at',
     ];
 
     protected $hidden = [
@@ -31,6 +32,6 @@ class User extends Authenticatable
 
     public function tenant()
     {
-        return $this->hasOne(Tenant::class, 'email', 'email');
+        return $this->hasOne(Tenant::class, 'user_id');
     }
 }
