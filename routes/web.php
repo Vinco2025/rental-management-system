@@ -49,11 +49,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('reports/export', [App\Http\Controllers\Admin\ReportController::class, 'export'])->name('reports.export');
 });
 
-Route::prefix('tenant')->name('tenant.')->middleware(['auth'])->group(function () {
-    Route::get('maintenance', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'index'])->name('maintenance.index');
-    Route::get('maintenance/create', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'create'])->name('maintenance.create');
-    Route::post('maintenance', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'store'])->name('maintenance.store');
-    Route::get('maintenance/{maintenance}', [App\Http\Controllers\Admin\MaintenanceRequestController::class, 'show'])->name('maintenance.show');
-}); 
+Route::prefix('tenant')->name('tenant.')->middleware(['auth', 'role:tenant'])->group(function () {
+    Route::get('maintenance', [App\Http\Controllers\Tenant\MaintenanceRequestController::class, 'index'])->name('maintenance.index');
+    Route::get('maintenance/create', [App\Http\Controllers\Tenant\MaintenanceRequestController::class, 'create'])->name('maintenance.create');
+    Route::post('maintenance', [App\Http\Controllers\Tenant\MaintenanceRequestController::class, 'store'])->name('maintenance.store');
+    Route::get('maintenance/{maintenance}', [App\Http\Controllers\Tenant\MaintenanceRequestController::class, 'show'])->name('maintenance.show');
+});
 
 require __DIR__.'/auth.php';
