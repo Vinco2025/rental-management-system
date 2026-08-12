@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\LeaseContractController;
+use App\Http\Controllers\Tenant\BillController;
 use App\Models\LeaseContract;
 
 Route::get('/', function () {
@@ -50,10 +51,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 });
 
 Route::prefix('tenant')->name('tenant.')->middleware(['auth', 'role:tenant'])->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\Tenant\DashboardController::class, 'index'])->name('dashboard');
     Route::get('maintenance', [App\Http\Controllers\Tenant\MaintenanceRequestController::class, 'index'])->name('maintenance.index');
     Route::get('maintenance/create', [App\Http\Controllers\Tenant\MaintenanceRequestController::class, 'create'])->name('maintenance.create');
     Route::post('maintenance', [App\Http\Controllers\Tenant\MaintenanceRequestController::class, 'store'])->name('maintenance.store');
     Route::get('maintenance/{maintenance}', [App\Http\Controllers\Tenant\MaintenanceRequestController::class, 'show'])->name('maintenance.show');
+    Route::get('bills', [App\Http\Controllers\Tenant\BillController::class, 'index'])->name('bills.index');
+    Route::get('bills/{bills}', [App\Http\Controllers\Tenant\BillController::class, 'show'])->name('bills.show');
 });
 
 require __DIR__.'/auth.php';
