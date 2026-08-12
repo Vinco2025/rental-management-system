@@ -20,6 +20,16 @@
         </div>
 
         <nav class="flex flex-col gap-1 px-3 flex-1">
+            <a href="{{ route('tenant.dashboard') }}"
+                style="border-radius:7px;padding:8px 10px;font-size:13px;display:flex;align-items:center;gap:9px;
+                {{ request()->routeIs('tenant.dashboard') ? 'background:#C2622A;color:#fff;' : 'color:#C4A08A;' }}">
+                <i class="ti ti-layout-dashboard" style="font-size:16px;"></i> Dashboard
+            </a>
+            <a href="{{ route('tenant.bills.index') }}"
+                style="border-radius:7px;padding:8px 10px;font-size:13px;display:flex;align-items:center;gap:9px;
+                {{ request()->routeIs('tenant.bills*') ? 'background:#C2622A;color:#fff;' : 'color:#C4A08A;' }}">
+                <i class="ti ti-file-invoice" style="font-size:16px;"></i> My Bills
+            </a>
             <a href="{{ route('tenant.maintenance.index') }}"
                 style="border-radius:7px;padding:8px 10px;font-size:13px;display:flex;align-items:center;gap:9px;
                 {{ request()->routeIs('tenant.maintenance*') ? 'background:#C2622A;color:#fff;' : 'color:#C4A08A;' }}">
