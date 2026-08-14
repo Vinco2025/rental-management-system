@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\RoomTypeController;
@@ -8,6 +7,9 @@ use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\LeaseContractController;
+use App\Http\Controllers\Tenant\LeaseController;
+use App\Http\Controllers\Tenant\ProfileController;
+use App\Http\Controllers\Tenant\PasswordController;
 use App\Http\Controllers\Tenant\BillController;
 use App\Models\LeaseContract;
 
@@ -58,6 +60,11 @@ Route::prefix('tenant')->name('tenant.')->middleware(['auth', 'role:tenant'])->g
     Route::get('maintenance/{maintenance}', [App\Http\Controllers\Tenant\MaintenanceRequestController::class, 'show'])->name('maintenance.show');
     Route::get('bills', [App\Http\Controllers\Tenant\BillController::class, 'index'])->name('bills.index');
     Route::get('bills/{bills}', [App\Http\Controllers\Tenant\BillController::class, 'show'])->name('bills.show');
+    Route::get('lease', [App\Http\Controllers\Tenant\LeaseController::class, 'index'])->name('lease.index');
+    Route::get('profile', [App\Http\Controllers\Tenant\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [App\Http\Controllers\Tenant\ProfileController::class, 'update'])->name('profile.update');
+    Route::get('password', [App\Http\Controllers\Tenant\PasswordController::class, 'edit'])->name('password.edit');
+    Route::put('password', [App\Http\Controllers\Tenant\PasswordController::class, 'update'])->name('password.update');
 });
 
 require __DIR__.'/auth.php';
