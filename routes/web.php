@@ -7,10 +7,10 @@ use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\LeaseContractController;
+use App\Http\Controllers\Tenant\BillController;
 use App\Http\Controllers\Tenant\LeaseController;
 use App\Http\Controllers\Tenant\ProfileController;
 use App\Http\Controllers\Tenant\PasswordController;
-use App\Http\Controllers\Tenant\BillController;
 use App\Models\LeaseContract;
 
 Route::get('/', function () {

@@ -25,6 +25,11 @@
                 {{ request()->routeIs('tenant.dashboard') ? 'background:#C2622A;color:#fff;' : 'color:#C4A08A;' }}">
                 <i class="ti ti-layout-dashboard" style="font-size:16px;"></i> Dashboard
             </a>
+            <a href="{{ route('tenant.lease.index') }}"
+                style="border-radius:7px;padding:8px 10px;font-size:13px;display:flex;align-items:center;gap:9px;
+                {{ request()->routeIs('tenant.lease.index*') ? 'background:#C2622A;color:#fff;' : 'color:#C4A08A;' }}">
+                <i class="ti ti-file-text" style="font-size:16px;"></i> My Lease
+            </a>
             <a href="{{ route('tenant.bills.index') }}"
                 style="border-radius:7px;padding:8px 10px;font-size:13px;display:flex;align-items:center;gap:9px;
                 {{ request()->routeIs('tenant.bills*') ? 'background:#C2622A;color:#fff;' : 'color:#C4A08A;' }}">
@@ -34,6 +39,19 @@
                 style="border-radius:7px;padding:8px 10px;font-size:13px;display:flex;align-items:center;gap:9px;
                 {{ request()->routeIs('tenant.maintenance*') ? 'background:#C2622A;color:#fff;' : 'color:#C4A08A;' }}">
                 <i class="ti ti-tool" style="font-size:16px;"></i> My Requests
+            </a>
+
+            <div style="border-top:0.5px solid #5C3420;margin:8px 0;"></div>
+
+            <a href="{{ route('tenant.profile.edit') }}"
+                style="border-radius:7px;padding:8px 10px;font-size:13px;display:flex;align-items:center;gap:9px;
+                {{ request()->routeIs('tenant.profile*') ? 'background:#C2622A;color:#fff;' : 'color:#C4A08A;' }}">
+                <i class="ti ti-user" style="font-size:16px;"></i> My Profile
+            </a>
+            <a href="{{ route('tenant.password.edit') }}"
+                style="border-radius:7px;padding:8px 10px;font-size:13px;display:flex;align-items:center;gap:9px;
+                {{ request()->routeIs('tenant.password*') ? 'background:#C2622A;color:#fff;' : 'color:#C4A08A;' }}">
+                <i class="ti ti-lock" style="font-size:16px;"></i> Change Password
             </a>
         </nav>
 
