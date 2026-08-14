@@ -8,6 +8,13 @@ use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\LeaseContractController;
+<<<<<<< Updated upstream
+=======
+use App\Http\Controllers\Tenant\LeaseController;
+use App\Http\Controllers\Tenant\ProfileController;
+use App\Http\Controllers\Tenant\PasswordController;
+use App\Http\Controllers\Tenant\BillController;
+>>>>>>> Stashed changes
 use App\Models\LeaseContract;
 
 Route::get('/', function () {
@@ -62,7 +69,10 @@ Route::prefix('tenant')->name('tenant.')->middleware(['auth', 'role:tenant'])->g
     Route::put('profile', [App\Http\Controllers\Tenant\ProfileController::class, 'update'])->name('profile.update');
     Route::get('password', [App\Http\Controllers\Tenant\PasswordController::class, 'edit'])->name('password.edit');
     Route::put('password', [App\Http\Controllers\Tenant\PasswordController::class, 'update'])->name('password.update');
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 });
 
 require __DIR__.'/auth.php';
