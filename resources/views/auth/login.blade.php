@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign in — Boarding House</title>
+    <title>Sign in — Rentify</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('rentify-logo.svg') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
@@ -23,15 +24,12 @@
         <div style="position:relative;z-index:10;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:40px;">
             {{-- Brand --}}
             <div style="display:flex;align-items:center;gap:12px;">
-                <div style="width:38px;height:38px;background:#C2622A;border-radius:9px;display:flex;align-items:center;justify-content:center;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M3 10.5 12 3l9 7.5"/>
-                        <path d="M5 9.5V20a1 1 0 0 0 1 1h3v-5h6v5h3a1 1 0 0 0 1-1V9.5"/>
-                    </svg>
+                <div style="width:38px;height:38px;background:#2A1509;border-radius:9px;display:flex;align-items:center;justify-content:center;">
+                    <img src="{{ asset('rentify-logo.svg') }}" alt="Rentify" style="width:30px;height:30px;border-radius:10px;background:#2A1509;padding:3px;">
                 </div>
                 <div>
-                    <p style="font-size:15px;font-weight:600;color:#fff;margin:0;">Boarding House</p>
-                    <p style="font-size:11px;color:#C4A08A;margin:2px 0 0;">Rental Management System</p>
+                    <p style="font-size:15px;font-weight:600;color:#fff;margin:0;">Rentify</p>
+                    <p style="font-size:11px;color:#2A1509;margin:2px 0 0;">Rental Management System</p>
                 </div>
             </div>
 
@@ -54,10 +52,7 @@
             {{-- Mobile brand (hidden on large screens) --}}
             <div style="text-align:center;margin-bottom:32px;">
                 <div style="width:48px;height:48px;background:#3D2314;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#F5EDE6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M3 10.5 12 3l9 7.5"/>
-                        <path d="M5 9.5V20a1 1 0 0 0 1 1h3v-5h6v5h3a1 1 0 0 0 1-1V9.5"/>
-                    </svg>
+                    <img src="{{ asset('rentify-logo.svg') }}" alt="Rentify" style="width:40px;height:40px;border-radius:10px;background:#2A1509;padding:3px;">
                 </div>
                 <p style="font-size:20px;font-weight:700;color:#3D2314;margin:0;">Welcome back</p>
                 <p style="font-size:13px;color:#7A5542;margin:6px 0 0;">Sign in to your account to continue</p>
