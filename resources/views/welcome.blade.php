@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Boarding House') }}</title>
+    <title>{{ config('app.name', 'rentify') }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('rentify-logo.svg') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -28,20 +29,15 @@
         {{-- Nav --}}
         <nav style="position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;">
             <div style="display:flex;align-items:center;gap:12px;">
-                <div style="width:40px;height:40px;background:#C2622A;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M3 10.5 12 3l9 7.5"/>
-                        <path d="M5 9.5V20a1 1 0 0 0 1 1h3v-5h6v5h3a1 1 0 0 0 1-1V9.5"/>
-                    </svg>
-                </div>
+                <img src="{{ asset('rentify-logo.svg') }}" alt="Rentify" style="width:40px;height:40px;border-radius:10px;background:#2A1509;padding:3px;">
                 <div>
-                    <p style="font-size:16px;font-weight:600;color:#fff;margin:0;line-height:1;">Boarding House</p>
+                    <p style="font-size:16px;font-weight:600;color:#fff;margin:0;line-height:1;">Rentify</p>
                     <p style="font-size:11px;color:#C4A08A;margin:3px 0 0;">Rental Management System</p>
                 </div>
             </div>
             @if(Route::has('login'))
                 @auth
-                    <a href="{{ url('/admin') }}" style="font-size:13px;font-weight:600;color:#fff;background:#C2622A;padding:9px 20px;border-radius:999px;text-decoration:none;">Dashboard</a>
+                    <a href="{{ url('/admin') }}" style="font-size:13px;font-weight:600;color:#fff;background:#2A1509;padding:9px 20px;border-radius:999px;text-decoration:none;">Dashboard</a>
                 @else
                     <a href="{{ route('login') }}" style="font-size:13px;font-weight:600;color:#fff;background:rgba(255,255,255,0.15);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.25);padding:9px 20px;border-radius:999px;text-decoration:none;">Sign in</a>
                 @endauth
@@ -173,7 +169,7 @@
 
         {{-- Footer --}}
         <p style="text-align:center;font-size:12px;color:#C4A08A;margin-top:40px;">
-            © {{ date('Y') }} Boarding House Rental Management System
+            © {{ date('Y') }} Rentify - Rental Management System
         </p>
     </div>
 

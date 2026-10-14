@@ -14,10 +14,10 @@
 
         {{-- Brand --}}
         <div style="display:flex;align-items:center;gap:12px;padding:20px 20px 16px;">
-            <div style="width:32px;height:32px;background:#C2622A;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <i class="ti ti-home-2" style="font-size:16px;color:#fff;"></i>
+            <div style="width:36px;height:36px;background:#2A1509;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;">
+                <img src="{{ asset('rentify-logo.svg') }}" alt="Rentify" style="width:28px;height:28px;object-fit:contain;">
             </div>
-            <span style="font-size:14px;font-weight:500;color:#F5EDE6;line-height:1.3;">Tenant<br>Portal</span>
+            <span style="font-size:14px;font-weight:600;color:#F5EDE6;line-height:1.3;">Rentify<br><span style="font-size:11px;font-weight:400;color:#C4A08A;">Tenant Portal</span></span>
         </div>
 
         {{-- Nav --}}

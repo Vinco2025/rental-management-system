@@ -1,42 +1,42 @@
-# 🏠 Boarding House Rental Management System
+# Boarding House Rental Management System
 
 A full-featured boarding house management system built with **Laravel 12** as a portfolio project. Covers the complete rental lifecycle — from room setup and tenant onboarding through lease contracts, billing, maintenance requests, and monthly reporting.
 
 ---
 
-## ✨ Features
+## Features
 
-### 🛏️ Room & Room Type Management
+### Room & Room Type Management
 - Define room types with base pricing and descriptions
 - Manage individual rooms with amenities (stored as JSON), floor, and status
 - Room status (`available` / `occupied`) flips automatically when a lease is created or deleted
 - Inline status toggle directly from the room list
 
-### 👤 Tenant Management
+### Tenant Management
 - Admin-only tenant registration — no public sign-up
 - Auto-generates login credentials (username + password) on tenant creation, flashed as a one-time alert
 - Full tenant profile: contact info, emergency contact, move-in date
 
-### 📄 Lease Contracts
+### Lease Contracts
 - Link tenants to rooms with start/end dates and monthly rate
 - Active, expired, and terminated lease statuses
 - Automatically marks room as occupied on contract creation; releases it on deletion
 
-### 💳 Billing & Payments
+### Billing & Payments
 - Generate monthly bills from all active leases in one action
 - Bills cover rent, electricity, and water (electricity/water default to 0 and are updated after meter readings)
 - Record partial or full payments against any bill
 - `recalculate()` method on the `Bill` model auto-updates balance and status (`unpaid` → `partial` → `paid`) after every payment change
 - Remove payments and balances recalculate automatically
 
-### 🔧 Maintenance Requests
+### Maintenance Requests
 - Tenants submit requests through their own portal; admins manage all requests
 - Priority levels: low, medium, high, urgent
 - Status workflow: open → in progress → resolved
 - `resolved_at` timestamp auto-stamped when status flips to resolved; cleared if moved back
 - Tracks who submitted each request (admin or tenant)
 
-### 📊 Dashboard & Reports
+### Dashboard & Reports
 - Admin dashboard with 8 live stat cards: occupancy rate, available rooms, active tenants, open maintenance, outstanding balance, collections this month, unpaid bills, and resolved requests
 - Occupancy progress bar
 - Recent activity panels: latest leases, payments, and maintenance requests
@@ -44,7 +44,7 @@ A full-featured boarding house management system built with **Laravel 12** as a 
 - Report covers billing detail with totals, payment breakdown by method, maintenance summary, and active lease snapshot
 - **PDF export** — downloads a fully formatted A4 report via `barryvdh/laravel-dompdf`
 
-### 🔐 Role-Based Access
+### Role-Based Access
 - Powered by **Spatie Laravel Permission**
 - `admin` role: full access to all modules
 - `tenant` role: scoped portal — submit and track their own maintenance requests only
@@ -53,7 +53,7 @@ A full-featured boarding house management system built with **Laravel 12** as a 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -68,7 +68,7 @@ A full-featured boarding house management system built with **Laravel 12** as a 
 
 ---
 
-## 🎨 UI Theme
+## UI Theme
 
 A warm, consistent color palette used throughout all views via pure inline styles:
 
@@ -82,7 +82,7 @@ A warm, consistent color palette used throughout all views via pure inline style
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 - PHP 8.2+
@@ -127,7 +127,7 @@ Visit `http://localhost:8000` and log in with the credentials created by `AdminS
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 app/
@@ -172,7 +172,7 @@ resources/
 
 ---
 
-## 🗺️ Development Phases
+## Development Phases
 
 | Phase | Module | Status |
 |---|---|---|
@@ -188,7 +188,7 @@ resources/
 
 ---
 
-## 📝 Notable Implementation Details
+## Notable Implementation Details
 
 - **Spatie middleware** must be manually registered in `bootstrap/app.php` in Laravel 12 — not auto-registered
 - **Delete forms are always placed outside edit forms** to prevent `_method=DELETE` from overriding `_method=PUT`
@@ -200,6 +200,6 @@ resources/
 
 ---
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
